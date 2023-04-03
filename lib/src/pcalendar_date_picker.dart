@@ -4,6 +4,8 @@
 
 import 'dart:math' as math;
 
+import 'package:persian_datetime_picker/src/utility/type_extensions.dart';
+
 import './pdate_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -360,7 +362,7 @@ class _DatePickerModeToggleButtonState
                       children: <Widget>[
                         Flexible(
                           child: Text(
-                            widget.title,
+                            widget.title.changeEnglishToPersianNumber,
                             overflow: TextOverflow.ellipsis,
                             style: textTheme.subtitle2?.copyWith(
                               color: controlColor,
@@ -699,7 +701,7 @@ class _DayPicker extends StatelessWidget {
         Widget dayWidget = Container(
           decoration: decoration,
           child: Center(
-            child: Text(formatDecimal(day),
+            child: Text(formatDecimal(day).changeEnglishToPersianNumber,
                 style: dayStyle!.apply(color: dayColor)),
           ),
         );
@@ -948,7 +950,7 @@ class _YearPickerState extends State<_YearPicker> {
         child: Center(
           child: Semantics(
             selected: isSelected,
-            child: Text(year.toString(), style: itemStyle),
+            child: Text(year.toString().changeEnglishToPersianNumber, style: itemStyle),
           ),
         ),
       ),

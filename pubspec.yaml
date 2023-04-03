@@ -11,6 +11,11 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: 0.18.0
+#  pub_sub: ^1.0.0
+
+dependency_overrides:
+  intl: 0.18.0
 
 dev_dependencies:
   flutter_lints: ^2.0.1

@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:persian_datetime_picker/src/utility/type_extensions.dart';
 
 // NOTE: This is an internal implementation file. Even though there are public
 // classes and functions defined here, they are only meant to be used by the
@@ -36,7 +37,7 @@ class PDatePickerHeader extends StatelessWidget {
     required this.icon,
     required this.iconTooltip,
     required this.onIconPressed,
-  })  : super(key: key);
+  }) : super(key: key);
 
   /// The text that is displayed at the top of the header.
   ///
@@ -103,8 +104,9 @@ class PDatePickerHeader extends StatelessWidget {
       overflow: TextOverflow.ellipsis,
     );
     final Text title = Text(
-      titleText,
-      semanticsLabel: titleSemanticsLabel ?? titleText,
+      titleText.changeEnglishToPersianNumber,
+      semanticsLabel:
+          titleSemanticsLabel ?? titleText.changeEnglishToPersianNumber,
       style: titleStyle,
       maxLines: (isShort || orientation == Orientation.portrait) ? 1 : 2,
       overflow: TextOverflow.visible,
