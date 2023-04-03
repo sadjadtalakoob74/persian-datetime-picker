@@ -234,12 +234,12 @@ class PDayPicker extends StatelessWidget {
   Widget build(BuildContext context) {
     final ThemeData themeData = Theme.of(context);
     final MaterialLocalizations localizations =
-        MaterialLocalizations.of(context);
+    MaterialLocalizations.of(context);
     final int year = displayedMonth.year;
     final int month = displayedMonth.month;
     final int daysInMonth = getDaysInMonth(year, month);
     final int firstDayOffset =
-        _computeFirstDayOffset(year, month, localizations);
+    _computeFirstDayOffset(year, month, localizations);
     final List<Widget> labels = <Widget>[
       ..._getDayHeaders(themeData.textTheme.caption, localizations),
     ];
@@ -267,7 +267,7 @@ class PDayPicker extends StatelessWidget {
           // The selected day gets a circle background highlight, and a contrasting text color.
           itemStyle = themeData.accentTextTheme.bodyText1;
           decoration = BoxDecoration(
-            color: themeData.accentColor,
+            // color: themeData.accentColor,
             shape: BoxShape.circle,
           );
         } else if (disabled) {
@@ -277,8 +277,9 @@ class PDayPicker extends StatelessWidget {
             currentDate.month == month &&
             currentDate.day == day) {
           // The current day gets a different text color.
-          itemStyle = themeData.textTheme.bodyText1!
-              .copyWith(color: themeData.accentColor);
+          itemStyle = themeData.textTheme.bodyText1!.copyWith(
+            // color: themeData.accentColor,
+          );
         }
 
         Widget dayWidget = Container(
@@ -335,7 +336,7 @@ class PDayPicker extends StatelessWidget {
             child: GridView.custom(
               gridDelegate: _kDayPickerGridDelegate,
               childrenDelegate:
-                  SliverChildListDelegate(labels, addRepaintBoundaries: false),
+              SliverChildListDelegate(labels, addRepaintBoundaries: false),
               padding: EdgeInsets.zero,
             ),
           ),
@@ -408,8 +409,8 @@ class PMonthPicker extends StatefulWidget {
 class _MonthPickerState extends State<PMonthPicker>
     with SingleTickerProviderStateMixin {
   static final Animatable<double> _chevronOpacityTween =
-      Tween<double>(begin: 1.0, end: 0.0)
-          .chain(CurveTween(curve: Curves.easeInOut));
+  Tween<double>(begin: 1.0, end: 0.0)
+      .chain(CurveTween(curve: Curves.easeInOut));
 
   @override
   void initState() {
@@ -460,11 +461,11 @@ class _MonthPickerState extends State<PMonthPicker>
   void _updateCurrentDate() {
     _todayDate = Jalali.now();
     final Jalali tomorrow =
-        Jalali(_todayDate.year, _todayDate.month, _todayDate.day + 1);
+    Jalali(_todayDate.year, _todayDate.month, _todayDate.day + 1);
     Duration timeUntilTomorrow =
-        tomorrow.toDateTime().difference(_todayDate.toDateTime());
+    tomorrow.toDateTime().difference(_todayDate.toDateTime());
     timeUntilTomorrow +=
-        const Duration(seconds: 1); // so we don't miss it by rounding
+    const Duration(seconds: 1); // so we don't miss it by rounding
     _timer?.cancel();
     _timer = Timer(timeUntilTomorrow, () {
       setState(() {
@@ -589,7 +590,7 @@ class _MonthPickerState extends State<PMonthPicker>
                       ? null
                       : _previousMonthDate.formatMonthYear(),
                   onPressed:
-                      _isDisplayingFirstMonth ? null : _handlePreviousMonth,
+                  _isDisplayingFirstMonth ? null : _handlePreviousMonth,
                 ),
               ),
             ),
@@ -701,7 +702,7 @@ class _YearPickerState extends State<PYearPicker> {
     scrollController = ScrollController(
       // Move the initial scroll position to the currently selected date's year.
       initialScrollOffset:
-          (widget.selectedDate.year - widget.firstDate.year) * _itemExtent,
+      (widget.selectedDate.year - widget.firstDate.year) * _itemExtent,
     );
   }
 
@@ -720,7 +721,7 @@ class _YearPickerState extends State<PYearPicker> {
         final bool isSelected = year == widget.selectedDate.year;
         final TextStyle? itemStyle = isSelected
             ? themeData.textTheme.headline5!
-                .copyWith(color: themeData.colorScheme.secondary)
+            .copyWith(color: themeData.colorScheme.secondary)
             : style;
         return InkWell(
           key: ValueKey<int>(year),

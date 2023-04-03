@@ -101,13 +101,13 @@ Future<Jalali?> showPersianDatePicker({
   firstDate = utils.dateOnly(firstDate);
   lastDate = utils.dateOnly(lastDate);
   assert(!lastDate.isBefore(firstDate),
-      'lastDate $lastDate must be on or after firstDate $firstDate.');
+  'lastDate $lastDate must be on or after firstDate $firstDate.');
   assert(!initialDate.isBefore(firstDate),
-      'initialDate $initialDate must be on or after firstDate $firstDate.');
+  'initialDate $initialDate must be on or after firstDate $firstDate.');
   assert(!initialDate.isAfter(lastDate),
-      'initialDate $initialDate must be on or before lastDate $lastDate.');
+  'initialDate $initialDate must be on or before lastDate $lastDate.');
   assert(selectableDayPredicate == null || selectableDayPredicate(initialDate),
-      'Provided initialDate $initialDate must satisfy provided selectableDayPredicate.');
+  'Provided initialDate $initialDate must satisfy provided selectableDayPredicate.');
   assert(debugCheckHasMaterialLocalizations(context));
 
   Widget dialog = _DatePickerDialog(
@@ -141,7 +141,7 @@ Future<Jalali?> showPersianDatePicker({
     );
   }
 
-  return showDialog<Jalali>(
+  return showModalBottomSheet<Jalali>(
     context: context,
     useRootNavigator: useRootNavigator,
     routeSettings: routeSettings,
@@ -172,15 +172,15 @@ class _DatePickerDialog extends StatefulWidget {
         lastDate = utils.dateOnly(lastDate),
         super(key: key) {
     assert(!this.lastDate.isBefore(this.firstDate),
-        'lastDate ${this.lastDate} must be on or after firstDate ${this.firstDate}.');
+    'lastDate ${this.lastDate} must be on or after firstDate ${this.firstDate}.');
     assert(!this.initialDate.isBefore(this.firstDate),
-        'initialDate ${this.initialDate} must be on or after firstDate ${this.firstDate}.');
+    'initialDate ${this.initialDate} must be on or after firstDate ${this.firstDate}.');
     assert(!this.initialDate.isAfter(this.lastDate),
-        'initialDate ${this.initialDate} must be on or before lastDate ${this.lastDate}.');
+    'initialDate ${this.initialDate} must be on or before lastDate ${this.lastDate}.');
     assert(
-        selectableDayPredicate == null ||
-            selectableDayPredicate!(this.initialDate),
-        'Provided initialDate ${this.initialDate} must satisfy provided selectableDayPredicate');
+    selectableDayPredicate == null ||
+        selectableDayPredicate!(this.initialDate),
+    'Provided initialDate ${this.initialDate} must satisfy provided selectableDayPredicate');
   }
 
   /// The initially selected [Jalali] that the picker should display.
@@ -310,11 +310,11 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     // Constrain the textScaleFactor to the largest supported value to prevent
     // layout issues.
     final double textScaleFactor =
-        math.min(MediaQuery.of(context).textScaleFactor, 1.3);
+    math.min(MediaQuery.of(context).textScaleFactor, 1.3);
 
     final String dateText = _selectedDate != null
         ? _selectedDate!.formatMediumDate()
-        // TODO(darrenaustin): localize 'Date'
+    // TODO(darrenaustin): localize 'Date'
         : 'Date';
     final Color dateColor = colorScheme.brightness == Brightness.light
         ? colorScheme.onPrimary
@@ -427,7 +427,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
     final DialogTheme dialogTheme = Theme.of(context).dialogTheme;
     return Dialog(
       insetPadding:
-          const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
+      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 24.0),
       // The default dialog shape is radius 2 rounded rect, but the spec has
       // been updated to 4, so we will use that here for the Date Picker, but
       // only if there isn't one provided in the theme.
