@@ -415,7 +415,7 @@ class _DatePickerDialogState extends State<_DatePickerDialog> {
       // TODO(darrenaustin): localize 'SELECT DATE'
       helpText: widget.helpText ?? 'انتخاب تاریخ',
       titleText: dateText,
-      titleStyle: dateStyle,
+      titleStyle: dateStyle?.copyWith(color: Colors.black),
       orientation: orientation,
       isShort: orientation == Orientation.landscape,
       icon: entryModeIcon,

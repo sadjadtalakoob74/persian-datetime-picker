@@ -3,7 +3,10 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:persian_datetime_picker/src/utility/type_extensions.dart';
+import 'package:persian_datetime_picker/resource/icons/app_icons.dart'
+    as app_icons;
 
 // NOTE: This is an internal implementation file. Even though there are public
 // classes and functions defined here, they are only meant to be used by the
@@ -107,7 +110,7 @@ class PDatePickerHeader extends StatelessWidget {
       titleText.changeEnglishToPersianNumber,
       semanticsLabel:
           titleSemanticsLabel ?? titleText.changeEnglishToPersianNumber,
-      style: titleStyle,
+      style: titleStyle?.copyWith(fontSize: 12),
       maxLines: (isShort || orientation == Orientation.portrait) ? 1 : 2,
       overflow: TextOverflow.visible,
     );
@@ -125,21 +128,52 @@ class PDatePickerHeader extends StatelessWidget {
           children: <Widget>[
             Container(
               height: _datePickerHeaderPortraitHeight,
-              color: primarySurfaceColor,
+              color: Colors.white,
               padding: const EdgeInsetsDirectional.only(
                 start: 24,
                 end: 12,
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 16),
-                  Flexible(child: help),
+                children: [
+                  //const SizedBox(height: 16),
+                  // Flexible(child: help),
                   const SizedBox(height: 38),
                   Row(
-                    children: <Widget>[
-                      Expanded(child: title),
-                      icon,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        app_icons.doubleRightArrow,
+                        height: 24,
+                        width: 24,
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      SvgPicture.asset(
+                        app_icons.rightArrow,
+                        height: 24,
+                        width: 24,
+                      ),
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      title,
+                      const SizedBox(
+                        width: 8,
+                      ),
+                      SvgPicture.asset(
+                        app_icons.doubleLeftArrow,
+                        height: 24,
+                        width: 24,
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      SvgPicture.asset(
+                        app_icons.leftArrow,
+                        height: 24,
+                        width: 24,
+                      ),
                     ],
                   ),
                 ],
